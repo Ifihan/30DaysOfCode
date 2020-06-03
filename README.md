@@ -5,10 +5,4 @@ Call the /generate endpoint with a GET request
 * last_name - user Last Name
 * track - programming Track
 * type - certificate type
-
-## Certificate types
-* 1 - Average performace
-* 2 - Good performace
-* 3 - Outstanding performace
-* 4 - Participating certificate
-* 5 - Mentor certificate
+* level - beginner or intermediate
