@@ -28,25 +28,21 @@ def delete_file(img_title):
     os.unlink(os.path.join(GENERATED_PATH, img_title))
 
 
-def make_certificate(first_name, last_name, track):
+def make_certificate(first_name, last_name, track, level):
     # set certificate style
     filename = "30DaysOfCode.png"
     font = "Cinzel-Bold.otf"
-    track_font = "Montserrat-Regular.tff"
-    level_font = "Montserrat-Regular.tff"
+    track_font = "Montserrat-Regular.ttf"
+    level_font = "Montserrat-Regular.ttf"
 
     # name style
     color = "#c9a04b"
-    size = 46.7
-    y = 1450
+    size = 70
+    y = 640
 
     # track style
     track_color = "#ffffff"
-    track_size = 13.6
-
-    # level style
-    level_color = "#ffffff"
-    level_size = 13.6
+    track_size = 35
 
     # name text
     text = "{} {}".format(first_name, last_name).upper()
@@ -61,20 +57,13 @@ def make_certificate(first_name, last_name, track):
     x = (W - w) / 2
     draw.text((x, y), text, fill=color, font=PIL_font)
 
-    # draw track
+    # draw track and level
     PIL_font = ImageFont.truetype(os.path.join(FONT_PATH, track_font), track_size)
-    w, h = draw.textsize(track, font=PIL_font)
-    x, y = 2170, 2110
-    draw.text((x, y), track, fill=track_color, font=PIL_font)
-
-    # draw level
-    PIL_font = ImageFont.truetype(os.path.join(FONT_PATH, level_font), level_size)
-    w, h = draw.textsize(level, font=PIL_font)
-    x, y = 2170, 2110
-    draw.text((x, y), level, fill=level, font=PIL_font)
+    x, y = 880, 765
+    draw.text((x, y), "{} {}".format(track, level), fill=track_color, font=PIL_font)
 
     # save certificate
-    img_title = "{}-{}-{}.png".format(first_name, last_name, track)
+    img_title = "{}-{}-{}-{}.png".format(first_name, last_name, track, level)
     img.save(os.path.join(GENERATED_PATH, img_title))
     task = Timer(30, delete_file, (img_title,))
     task.start()
