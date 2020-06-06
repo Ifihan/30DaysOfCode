@@ -28,11 +28,12 @@ def delete_file(img_title):
     os.unlink(os.path.join(GENERATED_PATH, img_title))
 
 
-def make_certificate(filename, first_name, last_name, track, level):
+def make_certificate(filename, first_name, last_name, track, level, constant):
     # set certificate style
     font = "Cinzel-Bold.otf"
-    track_font = "Montserrat-Regular.ttf"
-    level_font = "Montserrat-Regular.ttf"
+    track_font = "Montserrat-Bold.ttf"
+    level_font = "Montserrat-Bold.ttf"
+    constant_font = "Montserrat-Bold.ttf"
 
     # name style
     color = "#c9a04b"
@@ -42,6 +43,10 @@ def make_certificate(filename, first_name, last_name, track, level):
     # track style
     track_color = "#ffffff"
     track_size = 35
+    
+    # constant style
+    constant_color = "#ffffff"
+    constant_size = 35
 
     # name text
     text = "{} {}".format(first_name, last_name).upper()
@@ -57,12 +62,12 @@ def make_certificate(filename, first_name, last_name, track, level):
     draw.text((x, y), text, fill=color, font=PIL_font)
 
     # draw track and level
-    PIL_font = ImageFont.truetype(os.path.join(FONT_PATH, track_font), track_size)
-    x, y = 880, 765
-    draw.text((x, y), "{} {}".format(track, level), fill=track_color, font=PIL_font)
+    PIL_font = ImageFont.truetype(os.path.join(FONT_PATH, track_font, constant_font), track_size, constant_size)
+    x, y = 700, 450
+    draw.text((x, y), "{} {}".format(track, level, constant), fill=track_color, font=PIL_font)
 
     # save certificate
-    img_title = "{}-{}-{}-{}.png".format(first_name, last_name, track, level)
+    img_title = "{}-{}-{}-{}.png".format(first_name, last_name, track, level, constant)
     img.save(os.path.join(GENERATED_PATH, img_title))
     task = Timer(30, delete_file, (img_title,))
     task.start()
@@ -78,12 +83,12 @@ def mentor():
 def make_certificate_mentor(filename, first_name, last_name, track, level):
     # set certificate style
     font = "Cinzel-Bold.otf"
-    track_font = "Montserrat-Regular.ttf"
-    level_font = "Montserrat-Regular.ttf"
+    track_font = "Montserrat-Bold.ttf"
+    level_font = "Montserrat-Bold.ttf"
 
     # name style
     color = "#fff"
-    size = 150
+    size = 80
     x = 830
 
     # track style
