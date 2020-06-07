@@ -64,10 +64,10 @@ def make_certificate(filename, first_name, last_name, track, level, constant):
     # draw track and level
     PIL_font = ImageFont.truetype(os.path.join(FONT_PATH, track_font, constant_font), track_size, constant_size)
     x, y = 700, 450
-    draw.text((x, y), "{} {}".format(track, level, constant), fill=track_color, font=PIL_font)
+    draw.text((x, y), "{} {} {}".format(track, level, constant), fill=track_color, font=PIL_font)
 
     # save certificate
-    img_title = "{}-{}-{}-{}.png".format(first_name, last_name, track, level, constant)
+    img_title = "{}-{}-{}-{}-{}.png".format(first_name, last_name, track, level, constant)
     img.save(os.path.join(GENERATED_PATH, img_title))
     task = Timer(30, delete_file, (img_title,))
     task.start()
