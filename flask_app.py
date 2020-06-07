@@ -28,7 +28,7 @@ def delete_file(img_title):
     os.unlink(os.path.join(GENERATED_PATH, img_title))
 
 
-def make_certificate(filename, first_name, last_name, track, level, constant):
+def make_certificate(filename, first_name, last_name, track, level):
     # set certificate style
     font = "Cinzel-Bold.otf"
     track_font = "Montserrat-Bold.ttf"
@@ -37,7 +37,7 @@ def make_certificate(filename, first_name, last_name, track, level, constant):
     # name style
     color = "#c9a04b"
     size = 70
-    y = 640
+    y = 645
 
     # track style
     track_color = "#ffffff"
@@ -58,11 +58,14 @@ def make_certificate(filename, first_name, last_name, track, level, constant):
 
     # draw track and level
     PIL_font = ImageFont.truetype(os.path.join(FONT_PATH, track_font), track_size)
-    x, y = 750, 840
-    draw.text((x, y), "{} {} {}".format(track, level, constant), fill=track_color, font=PIL_font)
+    track_text = "{} {} track".format(track, level)
+    w, h = draw.textsize(track_text, font=PIL_font)
+    W, H = img.size
+    x, y = (W - w) / 2, 840
+    draw.text((x, y), track_text, fill=track_color, font=PIL_font)
 
     # save certificate
-    img_title = "{}-{}-{}-{}-{}.png".format(first_name, last_name, track, level, constant)
+    img_title = "{}-{}-{}-{}-track.png".format(first_name, last_name, track, level)
     img.save(os.path.join(GENERATED_PATH, img_title))
     task = Timer(30, delete_file, (img_title,))
     task.start()
@@ -83,7 +86,7 @@ def make_certificate_mentor(filename, first_name, last_name, track, level):
 
     # name style
     color = "#fff"
-    size = 80
+    size = 83
     x = 830
 
     # track style
@@ -100,10 +103,11 @@ def make_certificate_mentor(filename, first_name, last_name, track, level):
     PIL_font = ImageFont.truetype(os.path.join(FONT_PATH, font), size)
     w, h = draw.textsize(text, font=PIL_font)
     W, H = img.size
-    y = 535
+    
+    y = 595
     draw.text((x, y), text.split()[0], fill=color, font=PIL_font)
     
-    y = 675
+    y = 695
     draw.text((x, y), text.split()[1], fill=color, font=PIL_font)
     # draw track and level
     PIL_font = ImageFont.truetype(os.path.join(FONT_PATH, track_font), track_size)
