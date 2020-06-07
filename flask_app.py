@@ -33,7 +33,6 @@ def make_certificate(filename, first_name, last_name, track, level, constant):
     font = "Cinzel-Bold.otf"
     track_font = "Montserrat-Bold.ttf"
     level_font = "Montserrat-Bold.ttf"
-    constant_font = "Montserrat-Bold.ttf"
 
     # name style
     color = "#c9a04b"
@@ -42,11 +41,7 @@ def make_certificate(filename, first_name, last_name, track, level, constant):
 
     # track style
     track_color = "#ffffff"
-    track_size = 35
-    
-    # constant style
-    constant_color = "#ffffff"
-    constant_size = 35
+    track_size = 40
 
     # name text
     text = "{} {}".format(first_name, last_name).upper()
@@ -62,8 +57,8 @@ def make_certificate(filename, first_name, last_name, track, level, constant):
     draw.text((x, y), text, fill=color, font=PIL_font)
 
     # draw track and level
-    PIL_font = ImageFont.truetype(os.path.join(FONT_PATH, track_font, constant_font), track_size, constant_size)
-    x, y = 700, 450
+    PIL_font = ImageFont.truetype(os.path.join(FONT_PATH, track_font), track_size)
+    x, y = 750, 840
     draw.text((x, y), "{} {} {}".format(track, level, constant), fill=track_color, font=PIL_font)
 
     # save certificate
